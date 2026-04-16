@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id            String       @id @default(cuid())
+  email         String       @unique
+  name          String?
+  password      String
+  role          String       @default("user")
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  scans         InBodyScan[]
+  mealPlans     MealPlan[]
+  workoutPlans  WorkoutPlan[]
+}
+
+model InBodyScan {
+  id                        String   @id @default(cuid())
+  userId                    String
+  user                      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  scanDate                  DateTime @default(now())
+  notes                     String?
+
+  // Core metrics
+  weightKg                  Float
+  bodyFatPercent            Float
+  bodyFatMassKg             Float
+  skeletalMuscleMassKg      Float
+  leanBodyMassKg            Float
+  bmi                       Float
+
+  // Optional metrics
+  basalMetabolicRate        Int?
+  visceralFatLevel          Float?
+  totalBodyWaterL           Float?
+  intracellularWaterL       Float?
+  extracellularWaterL       Float?
+  proteinKg                 Float?
+  mineralsKg                Float?
+
+  // Segmental lean mass (kg)
+  rightArmLeanKg            Float?
+  leftArmLeanKg             Float?
+  trunkLeanKg               Float?
+  rightLegLeanKg            Float?
+  leftLegLeanKg             Float?
+
+  // Segmental fat mass (kg)
+  rightArmFatKg             Float?
+  leftArmFatKg              Float?
+  trunkFatKg                Float?
+  rightLegFatKg             Float?
+  leftLegFatKg              Float?
+
+  aiInsight                 String?
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
+
+  @@index([userId, scanDate])
+}
+
+model MealPlan {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  planData    String   // JSON string of MealPlanData
+  caloricTarget Int
+  goal        String
+  region      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model WorkoutPlan {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  planData    String   // JSON string of WorkoutPlanData
+  daysPerWeek Int
+  splitType   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+}
