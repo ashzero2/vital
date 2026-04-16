@@ -10,7 +10,7 @@ build/
 
 # ─── Prisma ──────────────────────────────────────────────────────────────────
 lib/generated/
-prisma/migrations/
+# migrations are committed — needed for prisma migrate deploy in Docker
 
 # ─── Database ────────────────────────────────────────────────────────────────
 *.db
