@@ -22,7 +22,11 @@ RUN pnpx prisma generate
 # Build Next.js with standalone output enabled
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV STANDALONE=1
-RUN pnpm build --webpack
+# DATABASE_URL must be set at build time so Prisma doesn't throw during
+# Next.js page-data collection — the build never actually connects to SQLite.
+ENV DATABASE_URL="file:/tmp/build.db"
+# --webpack is already in the build script; don't pass it again here
+RUN pnpm build
 
 # ─── Stage 4: runner ─────────────────────────────────────────────────────────
 FROM node:20-alpine AS runner
