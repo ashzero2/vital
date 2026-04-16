@@ -112,9 +112,10 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ data: { insight, cached: false }, error: null });
   } catch (err) {
-    console.error("[insights] AI generation failed:", err);
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("[insights] AI generation failed:", message);
     return NextResponse.json(
-      { data: null, error: "AI generation failed. Please try again." },
+      { data: null, error: `AI generation failed: ${message}` },
       { status: 502 }
     );
   }

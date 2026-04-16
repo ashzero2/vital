@@ -25,11 +25,23 @@ export default async function MealPlanPage() {
     prisma.inBodyScan.findFirst({
       where: { userId: session.user.id },
       orderBy: { scanDate: "desc" },
-      select: { id: true },
+      select: {
+        id: true,
+        basalMetabolicRate: true,
+        leanBodyMassKg: true,
+        weightKg: true,
+      },
     }),
   ]);
 
   const latestScanId = latestScan?.id;
+  const latestScanMetrics = latestScan
+    ? {
+        basalMetabolicRate: latestScan.basalMetabolicRate ?? null,
+        leanBodyMassKg: latestScan.leanBodyMassKg,
+        weightKg: latestScan.weightKg,
+      }
+    : null;
   const plan: MealPlanData | null = latestPlanRecord
     ? (JSON.parse(latestPlanRecord.planData) as MealPlanData)
     : null;
@@ -54,7 +66,7 @@ export default async function MealPlanPage() {
             </p>
           )}
         </div>
-        {plan && <RegenerateToggle latestScanId={latestScanId} />}
+        {plan && <RegenerateToggle latestScanId={latestScanId} latestScanMetrics={latestScanMetrics} />}
       </div>
 
       {/* No plan — show form */}
@@ -75,7 +87,7 @@ export default async function MealPlanPage() {
               <Sparkles size={15} className="text-lime-400" />
               <h2 className="text-sm font-semibold text-white">Generate Plan</h2>
             </div>
-            <GenerateForm latestScanId={latestScanId} />
+            <GenerateForm latestScanId={latestScanId} latestScanMetrics={latestScanMetrics} />
           </div>
         </>
       )}

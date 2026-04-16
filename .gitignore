@@ -80,8 +80,9 @@ Desktop.ini
 !.yarn/versions
 
 # ─── Docker ──────────────────────────────────────────────────────────────────
-.dockerignore
+.env.production
 docker-compose.override.yml
+# keep: Dockerfile, .dockerignore, docker-compose.yml, .env.production.example
 
 # ─── Claude / AI tooling ─────────────────────────────────────────────────────
 .agents/

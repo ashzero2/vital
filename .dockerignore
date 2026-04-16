@@ -1,0 +1,13 @@
+.git
+.next
+node_modules
+*.db
+*.db-shm
+*.db-wal
+.env
+.env.local
+.env.development
+.env.production
+coverage
+.DS_Store
+*.log

@@ -3,12 +3,14 @@
 import { useState } from "react";
 import { RefreshCw, ChevronDown } from "lucide-react";
 import { GenerateForm } from "./GenerateForm";
+import type { ScanMetrics } from "./GenerateForm";
 
 interface RegenerateToggleProps {
   latestScanId?: string;
+  latestScanMetrics?: ScanMetrics | null;
 }
 
-export function RegenerateToggle({ latestScanId }: RegenerateToggleProps) {
+export function RegenerateToggle({ latestScanId, latestScanMetrics }: RegenerateToggleProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -29,7 +31,7 @@ export function RegenerateToggle({ latestScanId }: RegenerateToggleProps) {
 
       {open && (
         <div className="w-full mt-2 rounded-xl border border-white/8 bg-white/3 p-5">
-          <GenerateForm latestScanId={latestScanId} />
+          <GenerateForm latestScanId={latestScanId} latestScanMetrics={latestScanMetrics} />
         </div>
       )}
     </div>

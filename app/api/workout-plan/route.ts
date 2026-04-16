@@ -73,9 +73,10 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ data: { id: record.id, planData }, error: null }, { status: 201 });
   } catch (err) {
-    console.error("[workout-plan] AI generation failed:", err);
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("[workout-plan] AI generation failed:", message);
     return NextResponse.json(
-      { data: null, error: "AI generation failed. Please try again." },
+      { data: null, error: `AI generation failed: ${message}` },
       { status: 502 }
     );
   }
