@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
 import {
   LayoutDashboard,
   ScanLine,
@@ -20,6 +21,11 @@ const NAV = [
 
 export function BottomNav() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  useEffect(() => {
+    NAV.forEach(({ href }) => router.prefetch(href));
+  }, [router]);
 
   function isActive(href: string) {
     if (href === "/dashboard") return pathname === "/dashboard";
