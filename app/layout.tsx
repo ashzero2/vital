@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Syne, DM_Sans } from "next/font/google";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import "./globals.css";
 
 const syne = Syne({
@@ -28,9 +29,10 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${syne.variable} ${dmSans.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-[#0a0a0a] text-white" style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}>
-        {children}
+      <body className="min-h-full flex flex-col bg-background text-foreground" style={{ fontFamily: "var(--font-dm-sans), sans-serif" }}>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

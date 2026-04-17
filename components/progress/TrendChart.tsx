@@ -38,13 +38,12 @@ function CustomTooltip({
   if (!active || !payload?.length) return null;
   return (
     <div
-      className="rounded-lg border border-white/10 px-3 py-2 text-sm"
-      style={{ background: "#1a1a1a" }}
+      className="rounded-lg border border-border px-3 py-2 text-sm bg-card"
     >
-      <p className="text-white/40 text-[11px] mb-0.5">{label}</p>
-      <p className="text-white font-semibold">
+      <p className="text-muted-foreground text-[11px] mb-0.5">{label}</p>
+      <p className="text-foreground font-semibold">
         {payload[0].value.toFixed(1)}
-        <span className="text-white/40 font-normal ml-1 text-xs">{unit}</span>
+        <span className="text-muted-foreground font-normal ml-1 text-xs">{unit}</span>
       </p>
     </div>
   );
@@ -63,8 +62,8 @@ export function TrendChart({
   const padding = Math.max((max - min) * 0.2, 0.5);
 
   return (
-    <div className="rounded-xl border border-white/8 bg-white/3 p-4 pb-2">
-      <p className="text-[10px] uppercase tracking-widest text-white/30 mb-4">{label}</p>
+    <div className="rounded-xl border border-border bg-accent p-4 pb-2">
+      <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-4">{label}</p>
       <ResponsiveContainer width="100%" height={140}>
         <LineChart data={data} margin={{ top: 4, right: 4, bottom: 0, left: -20 }}>
           <CartesianGrid

@@ -11,6 +11,7 @@ import {
   TrendingUp,
   LogOut,
 } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 
 const NAV = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
@@ -44,10 +45,7 @@ export function Sidebar({ userName, userEmail }: SidebarProps) {
   }
 
   return (
-    <aside
-      className="hidden md:flex flex-col fixed left-0 top-0 h-full w-[240px] border-r border-white/6 z-40"
-      style={{ background: "#0f0f0f" }}
-    >
+    <aside className="hidden md:flex flex-col fixed left-0 top-0 h-full w-[240px] border-r border-border bg-sidebar z-40">
       {/* Logo */}
       <div className="px-6 pt-7 pb-6">
         <div className="flex items-center gap-2.5">
@@ -66,7 +64,7 @@ export function Sidebar({ userName, userEmail }: SidebarProps) {
             </svg>
           </div>
           <span
-            className="text-[17px] font-bold text-white tracking-tight"
+            className="text-[17px] font-bold text-sidebar-foreground tracking-tight"
             style={{ fontFamily: "var(--font-syne), sans-serif" }}
           >
             Vital
@@ -84,8 +82,8 @@ export function Sidebar({ userName, userEmail }: SidebarProps) {
               href={href}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-150 ${
                 active
-                  ? "text-lime-400 bg-lime-400/8 font-medium"
-                  : "text-white/40 hover:text-white/70 hover:bg-white/4"
+                  ? "text-lime-500 bg-lime-500/10 font-medium"
+                  : "text-muted-foreground hover:text-foreground hover:bg-accent"
               }`}
             >
               <Icon size={16} strokeWidth={active ? 2 : 1.5} />
@@ -95,8 +93,8 @@ export function Sidebar({ userName, userEmail }: SidebarProps) {
         })}
       </nav>
 
-      {/* User */}
-      <div className="px-3 pb-5 pt-4 border-t border-white/6">
+      {/* User + theme toggle */}
+      <div className="px-3 pb-5 pt-4 border-t border-border">
         <div className="flex items-center gap-3 px-3 py-2.5">
           <div
             className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold text-black"
@@ -105,15 +103,16 @@ export function Sidebar({ userName, userEmail }: SidebarProps) {
             {getInitials(userName, userEmail)}
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-[13px] font-medium text-white truncate leading-tight">
+            <p className="text-[13px] font-medium text-sidebar-foreground truncate leading-tight">
               {userName ?? userEmail}
             </p>
-            <p className="text-[11px] text-white/30 truncate">{userEmail}</p>
+            <p className="text-[11px] text-muted-foreground truncate">{userEmail}</p>
           </div>
+          <ThemeToggle />
         </div>
         <button
           onClick={() => signOut({ callbackUrl: "/login" })}
-          className="mt-1 w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-white/30 hover:text-white/60 hover:bg-white/4 transition-colors"
+          className="mt-1 w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
         >
           <LogOut size={14} strokeWidth={1.5} />
           Sign out

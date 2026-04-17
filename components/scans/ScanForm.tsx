@@ -318,7 +318,7 @@ export function ScanForm({ prefill, missingFields = [] }: ScanFormProps) {
         <button
           type="button"
           onClick={() => router.back()}
-          className="rounded-lg border border-white/10 px-5 py-2.5 text-sm text-white/50 transition-colors hover:border-white/20 hover:text-white/80"
+          className="rounded-lg border border-border px-5 py-2.5 text-sm text-muted-foreground transition-colors hover:border-border hover:text-foreground/80"
         >
           Cancel
         </button>
@@ -348,9 +348,9 @@ function Section({
 }) {
   return (
     <div>
-      <div className="mb-4 border-b border-white/6 pb-2">
-        <h3 className="text-sm font-semibold text-white">{title}</h3>
-        {subtitle && <p className="text-xs text-white/30">{subtitle}</p>}
+      <div className="mb-4 border-b border-border pb-2">
+        <h3 className="text-sm font-semibold text-foreground">{title}</h3>
+        {subtitle && <p className="text-xs text-muted-foreground">{subtitle}</p>}
       </div>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">{children}</div>
     </div>
@@ -378,9 +378,9 @@ function Field({
 }) {
   return (
     <div className={className}>
-      <label className="mb-1.5 flex items-center gap-1 text-[11px] uppercase tracking-widest text-white/40">
+      <label className="mb-1.5 flex items-center gap-1 text-[11px] uppercase tracking-widest text-muted-foreground">
         {label}
-        {unit && <span className="text-white/20">({unit})</span>}
+        {unit && <span className="text-muted-foreground/50">({unit})</span>}
         {required && <span className="text-lime-400">*</span>}
         {missing && !required && <span className="text-amber-400/60 text-[9px]">missing</span>}
       </label>
@@ -396,5 +396,5 @@ function Field({
 }
 
 function inputCls(extra = "") {
-  return `w-full rounded-lg border border-white/8 bg-white/4 px-3 py-2 text-sm text-white placeholder-white/20 outline-none transition-colors focus:border-lime-400/40 focus:bg-white/6 ${extra}`;
+  return `w-full rounded-lg border border-border bg-accent px-3 py-2 text-sm text-foreground placeholder-muted-foreground outline-none transition-colors focus:border-lime-400/40 focus:bg-muted ${extra}`;
 }

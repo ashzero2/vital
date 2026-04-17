@@ -5,8 +5,8 @@ import { buildMealPlanPrompt, buildMealPlanRetryPrompt } from "../prompts/meal-p
 import { buildWorkoutPlanPrompt, buildWorkoutPlanRetryPrompt } from "../prompts/workout-plan";
 
 // Primary model, fallback used when primary returns 503
-const PRIMARY_MODEL = "gemini-2.5-flash";
-const FALLBACK_MODEL = "gemini-2.0-flash-lite";
+const PRIMARY_MODEL = "gemini-flash-latest";
+const FALLBACK_MODEL = "gemini-2.0-flash";
 
 const RETRY_DELAYS_MS = [3000, 8000]; // 2 retries: wait 3s then 8s
 
@@ -17,6 +17,10 @@ function isRetryable(err: unknown): boolean {
 
 async function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function stripJsonFences(text: string): string {
+  return text.replace(/^```(?:json)?\s*/i, "").replace(/\s*```\s*$/, "").trim();
 }
 
 export class GeminiProvider implements AIProvider {
@@ -47,20 +51,21 @@ export class GeminiProvider implements AIProvider {
   }
 
   private async _callForJson(firstPrompt: string, retryPrompt: string): Promise<string> {
-    const text = await this._callWithRetry(firstPrompt, 4096);
+    const text = await this._callWithRetry(firstPrompt, 8192, true);
+    const cleaned = stripJsonFences(text);
     try {
-      JSON.parse(text);
-      return text;
+      JSON.parse(cleaned);
+      return cleaned;
     } catch {
-      // Bad JSON — retry with stricter prompt
-      const retryText = await this._callWithRetry(retryPrompt, 4096);
-      JSON.parse(retryText); // throws if still invalid
-      return retryText;
+      const retryText = await this._callWithRetry(retryPrompt, 8192, true);
+      const retryClean = stripJsonFences(retryText);
+      JSON.parse(retryClean); // throws if still invalid
+      return retryClean;
     }
   }
 
   /** Calls PRIMARY_MODEL, retries on 503 with backoff, falls back to FALLBACK_MODEL. */
-  private async _callWithRetry(prompt: string, maxTokens: number): Promise<string> {
+  private async _callWithRetry(prompt: string, maxTokens: number, json = false): Promise<string> {
     let lastErr: unknown;
 
     for (let attempt = 0; attempt <= RETRY_DELAYS_MS.length; attempt++) {
@@ -68,28 +73,29 @@ export class GeminiProvider implements AIProvider {
         await sleep(RETRY_DELAYS_MS[attempt - 1]);
       }
       try {
-        return await this._call(PRIMARY_MODEL, prompt, maxTokens);
+        return await this._call(PRIMARY_MODEL, prompt, maxTokens, json);
       } catch (err) {
         lastErr = err;
-        if (!isRetryable(err)) break; // non-retryable — skip to fallback immediately
+        if (!isRetryable(err)) break;
         console.warn(`[gemini] 503 on attempt ${attempt + 1}, retrying…`);
       }
     }
 
-    // All retries exhausted — try fallback model once
     console.warn(`[gemini] Primary model unavailable, trying fallback ${FALLBACK_MODEL}`);
     try {
-      return await this._call(FALLBACK_MODEL, prompt, maxTokens);
+      return await this._call(FALLBACK_MODEL, prompt, maxTokens, json);
     } catch (fallbackErr) {
-      // Throw the original error if fallback also fails
       throw lastErr ?? fallbackErr;
     }
   }
 
-  private async _call(model: string, prompt: string, maxTokens: number): Promise<string> {
+  private async _call(model: string, prompt: string, maxTokens: number, json = false): Promise<string> {
     const m = this.genAI.getGenerativeModel({
       model,
-      generationConfig: { maxOutputTokens: maxTokens },
+      generationConfig: {
+        maxOutputTokens: maxTokens,
+        ...(json ? { responseMimeType: "application/json" } : {}),
+      },
     });
     const result = await m.generateContent(prompt);
     return result.response.text().trim();

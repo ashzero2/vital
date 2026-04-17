@@ -15,7 +15,7 @@ export function RegenerateToggle({ latestScanId }: RegenerateToggleProps) {
     <div className="flex flex-col items-end gap-3">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-1.5 rounded-lg border border-white/10 px-3 py-1.5 text-xs text-white/50 hover:border-white/20 hover:text-white/80 transition-colors"
+        className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs text-muted-foreground hover:border-border hover:text-foreground/80 transition-colors"
       >
         <RefreshCw size={12} strokeWidth={1.5} />
         Regenerate
@@ -28,7 +28,7 @@ export function RegenerateToggle({ latestScanId }: RegenerateToggleProps) {
       </button>
 
       {open && (
-        <div className="w-full mt-2 rounded-xl border border-white/8 bg-white/3 p-5">
+        <div className="w-full mt-2 rounded-xl border border-border bg-accent p-5">
           <GenerateForm latestScanId={latestScanId} />
         </div>
       )}

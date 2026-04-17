@@ -41,8 +41,8 @@ export function ScanCompare({ current, previous, previousDate }: ScanCompareProp
   });
 
   return (
-    <div className="rounded-xl border border-white/8 bg-white/3 p-5">
-      <p className="mb-4 text-xs uppercase tracking-widest text-white/30">
+    <div className="rounded-xl border border-border bg-accent p-5">
+      <p className="mb-4 text-xs uppercase tracking-widest text-muted-foreground">
         vs. scan from {prevDateStr}
       </p>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
@@ -55,8 +55,8 @@ export function ScanCompare({ current, previous, previousDate }: ScanCompareProp
           const sign = isPos ? "+" : "";
 
           return (
-            <div key={key} className="rounded-lg border border-white/6 bg-white/3 p-3">
-              <p className="text-[10px] uppercase tracking-widest text-white/30">{label}</p>
+            <div key={key} className="rounded-lg border border-border bg-accent p-3">
+              <p className="text-[10px] uppercase tracking-widest text-muted-foreground">{label}</p>
               <div className={`mt-1 flex items-center gap-1 ${color}`}>
                 {isPos && <TrendingUp size={12} />}
                 {isNeg && <TrendingDown size={12} />}

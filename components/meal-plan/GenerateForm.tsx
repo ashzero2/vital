@@ -38,8 +38,8 @@ function calcTarget(metrics: ScanMetrics, goal: "cut" | "maintain" | "bulk"): nu
 }
 
 const inputCls =
-  "w-full rounded-lg border border-white/8 bg-white/4 px-3 py-2.5 text-sm text-white placeholder-white/20 outline-none focus:border-lime-400/40 focus:bg-white/5 transition-colors";
-const labelCls = "block text-[10px] uppercase tracking-widest text-white/40 mb-2";
+  "w-full rounded-lg border border-border bg-accent px-3 py-2.5 text-sm text-foreground placeholder-muted-foreground outline-none focus:border-lime-400/40 focus:bg-muted transition-colors";
+const labelCls = "block text-[10px] uppercase tracking-widest text-muted-foreground mb-2";
 
 export function GenerateForm({ latestScanId, latestScanMetrics }: GenerateFormProps) {
   const router = useRouter();
@@ -106,11 +106,10 @@ export function GenerateForm({ latestScanId, latestScanMetrics }: GenerateFormPr
             value={goal}
             onChange={(e) => setGoal(e.target.value as "cut" | "maintain" | "bulk")}
             className={inputCls + " cursor-pointer"}
-            style={{ background: "rgba(255,255,255,0.04)" }}
           >
-            <option value="cut" style={{ background: "#1a1a1a" }}>Cut — Fat Loss</option>
-            <option value="maintain" style={{ background: "#1a1a1a" }}>Maintain — Recomposition</option>
-            <option value="bulk" style={{ background: "#1a1a1a" }}>Bulk — Muscle Gain</option>
+            <option value="cut" className="bg-card">Cut — Fat Loss</option>
+            <option value="maintain" className="bg-card">Maintain — Recomposition</option>
+            <option value="bulk" className="bg-card">Bulk — Muscle Gain</option>
           </select>
         </div>
 
@@ -118,7 +117,7 @@ export function GenerateForm({ latestScanId, latestScanMetrics }: GenerateFormPr
         <div>
           <label className={labelCls}>
             Caloric Target{" "}
-            <span className="text-white/20 normal-case tracking-normal">(kcal)</span>
+            <span className="text-muted-foreground/50 normal-case tracking-normal">(kcal)</span>
             {suggestedTarget && !isCustom && (
               <span className="ml-1.5 inline-flex items-center gap-0.5 text-lime-400/60 normal-case tracking-normal">
                 <Calculator size={9} />
@@ -129,7 +128,7 @@ export function GenerateForm({ latestScanId, latestScanMetrics }: GenerateFormPr
               <button
                 type="button"
                 onClick={() => setCaloricTarget(String(suggestedTarget))}
-                className="ml-1.5 text-white/30 normal-case tracking-normal hover:text-lime-400/70 transition-colors"
+                className="ml-1.5 text-muted-foreground normal-case tracking-normal hover:text-lime-400/70 transition-colors"
               >
                 reset to {suggestedTarget}
               </button>
@@ -146,7 +145,7 @@ export function GenerateForm({ latestScanId, latestScanMetrics }: GenerateFormPr
             className={inputCls}
           />
           {suggestedTarget && (
-            <p className="mt-1.5 text-[11px] text-white/25">
+            <p className="mt-1.5 text-[11px] text-muted-foreground/50">
               TDEE estimate ·{" "}
               {goal === "cut" && `${suggestedTarget + 400} − 400 deficit`}
               {goal === "maintain" && `${suggestedTarget} maintenance`}
@@ -159,7 +158,7 @@ export function GenerateForm({ latestScanId, latestScanMetrics }: GenerateFormPr
       <div>
         <label className={labelCls}>
           Cuisine Region{" "}
-          <span className="text-white/20 normal-case tracking-normal">(optional)</span>
+          <span className="text-muted-foreground/50 normal-case tracking-normal">(optional)</span>
         </label>
         <input
           type="text"
@@ -185,7 +184,7 @@ export function GenerateForm({ latestScanId, latestScanMetrics }: GenerateFormPr
               style={{ transform: useScan ? "translateX(20px)" : "translateX(0)" }}
             />
           </button>
-          <span className="text-sm text-white/50 group-hover:text-white/70 transition-colors">
+          <span className="text-sm text-muted-foreground group-hover:text-foreground/80 transition-colors">
             Personalise using latest scan data
           </span>
         </label>

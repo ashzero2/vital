@@ -11,9 +11,9 @@ interface GenerateFormProps {
 }
 
 const inputCls =
-  "w-full rounded-lg border border-white/8 bg-white/4 px-3 py-2.5 text-sm text-white placeholder-white/20 outline-none focus:border-lime-400/40 focus:bg-white/5 transition-colors";
+  "w-full rounded-lg border border-border bg-accent px-3 py-2.5 text-sm text-foreground placeholder-muted-foreground outline-none focus:border-lime-400/40 focus:bg-muted transition-colors";
 
-const labelCls = "block text-[10px] uppercase tracking-widest text-white/40 mb-2";
+const labelCls = "block text-[10px] uppercase tracking-widest text-muted-foreground mb-2";
 
 export function GenerateForm({ latestScanId }: GenerateFormProps) {
   const router = useRouter();
@@ -64,10 +64,9 @@ export function GenerateForm({ latestScanId }: GenerateFormProps) {
             value={daysPerWeek}
             onChange={(e) => setDaysPerWeek(e.target.value)}
             className={inputCls + " cursor-pointer"}
-            style={{ background: "rgba(255,255,255,0.04)" }}
           >
             {[1, 2, 3, 4, 5, 6, 7].map((n) => (
-              <option key={n} value={n} style={{ background: "#1a1a1a" }}>
+              <option key={n} value={n} className="bg-card">
                 {n} {n === 1 ? "day" : "days"}
               </option>
             ))}
@@ -79,12 +78,11 @@ export function GenerateForm({ latestScanId }: GenerateFormProps) {
             value={splitType}
             onChange={(e) => setSplitType(e.target.value as SplitType)}
             className={inputCls + " cursor-pointer"}
-            style={{ background: "rgba(255,255,255,0.04)" }}
           >
-            <option value="PPL" style={{ background: "#1a1a1a" }}>PPL — Push / Pull / Legs</option>
-            <option value="Upper-Lower" style={{ background: "#1a1a1a" }}>Upper-Lower Split</option>
-            <option value="Full Body" style={{ background: "#1a1a1a" }}>Full Body</option>
-            <option value="Bro Split" style={{ background: "#1a1a1a" }}>Bro Split</option>
+            <option value="PPL" className="bg-card">PPL — Push / Pull / Legs</option>
+            <option value="Upper-Lower" className="bg-card">Upper-Lower Split</option>
+            <option value="Full Body" className="bg-card">Full Body</option>
+            <option value="Bro Split" className="bg-card">Bro Split</option>
           </select>
         </div>
       </div>
@@ -104,7 +102,7 @@ export function GenerateForm({ latestScanId }: GenerateFormProps) {
               style={{ transform: useScan ? "translateX(20px)" : "translateX(0)" }}
             />
           </button>
-          <span className="text-sm text-white/50 group-hover:text-white/70 transition-colors">
+          <span className="text-sm text-muted-foreground group-hover:text-foreground/80 transition-colors">
             Personalise using latest scan data
           </span>
         </label>

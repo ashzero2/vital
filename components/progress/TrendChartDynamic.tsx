@@ -8,9 +8,9 @@ const TrendChart = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="rounded-xl border border-white/8 bg-white/3 p-4">
-        <div className="h-3 w-24 rounded bg-white/8 mb-4 animate-pulse" />
-        <div className="h-[140px] rounded bg-white/4 animate-pulse" />
+      <div className="rounded-xl border border-border bg-accent p-4">
+        <div className="h-3 w-24 rounded bg-muted mb-4 animate-pulse" />
+        <div className="h-[140px] rounded bg-accent animate-pulse" />
       </div>
     ),
   }

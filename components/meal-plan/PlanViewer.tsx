@@ -20,7 +20,7 @@ function MacroPill({
     protein: "bg-blue-400/10 text-blue-400",
     carbs: "bg-amber-400/10 text-amber-400",
     fat: "bg-rose-400/10 text-rose-400",
-    cal: "bg-white/6 text-white/50",
+    cal: "bg-accent text-muted-foreground",
   };
   return (
     <span className={`inline-flex items-baseline gap-1 rounded-md px-2 py-0.5 text-[11px] font-medium ${styles[variant]}`}>
@@ -33,9 +33,9 @@ function MacroPill({
 
 function MealCard({ title, meal }: { title: string; meal: MealEntry }) {
   return (
-    <div className="rounded-xl border border-white/8 bg-white/3 p-4">
-      <p className="text-[10px] uppercase tracking-widest text-white/30 mb-2">{title}</p>
-      <p className="text-sm font-medium text-white mb-3 leading-snug">{meal.name}</p>
+    <div className="rounded-xl border border-border bg-accent p-4">
+      <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2">{title}</p>
+      <p className="text-sm font-medium text-foreground mb-3 leading-snug">{meal.name}</p>
       <div className="flex flex-wrap gap-1.5">
         <MacroPill label="P" value={meal.protein} unit="g" variant="protein" />
         <MacroPill label="C" value={meal.carbs} unit="g" variant="carbs" />
@@ -57,7 +57,7 @@ export function PlanViewer({ plan }: { plan: MealPlanData }) {
   return (
     <div>
       {/* Day tabs */}
-      <div className="flex overflow-x-auto border-b border-white/6 mb-5" style={{ scrollbarWidth: "none" }}>
+      <div className="flex overflow-x-auto border-b border-border mb-5" style={{ scrollbarWidth: "none" }}>
         {DAYS.map((d, i) => {
           const available = dayMap.has(d);
           const active = i === activeIdx;
@@ -69,8 +69,8 @@ export function PlanViewer({ plan }: { plan: MealPlanData }) {
                 active
                   ? "text-lime-400 border-lime-400"
                   : available
-                  ? "text-white/40 border-transparent hover:text-white/60"
-                  : "text-white/15 border-transparent cursor-default"
+                  ? "text-muted-foreground border-transparent hover:text-foreground/80"
+                  : "text-muted-foreground/50 border-transparent cursor-default"
               }`}
             >
               {d.slice(0, 3)}
@@ -98,8 +98,8 @@ export function PlanViewer({ plan }: { plan: MealPlanData }) {
           )}
 
           {/* Daily totals */}
-          <div className="rounded-xl border border-white/6 bg-white/2 px-4 py-3">
-            <p className="text-[10px] uppercase tracking-widest text-white/30 mb-2">Daily Totals</p>
+          <div className="rounded-xl border border-border bg-accent px-4 py-3">
+            <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2">Daily Totals</p>
             <div className="flex flex-wrap gap-2">
               <MacroPill label="Protein" value={dayData.totalProtein} unit="g" variant="protein" />
               <MacroPill label="Carbs" value={dayData.totalCarbs} unit="g" variant="carbs" />
@@ -109,16 +109,16 @@ export function PlanViewer({ plan }: { plan: MealPlanData }) {
           </div>
         </div>
       ) : (
-        <div className="rounded-xl border border-white/6 bg-white/2 p-8 text-center">
-          <p className="text-sm text-white/30">No data for this day</p>
+        <div className="rounded-xl border border-border bg-accent p-8 text-center">
+          <p className="text-sm text-muted-foreground">No data for this day</p>
         </div>
       )}
 
       {/* Notes */}
       {plan.notes && (
-        <div className="mt-4 rounded-xl border border-white/6 bg-white/2 p-4">
-          <p className="text-[10px] uppercase tracking-widest text-white/30 mb-2">Notes</p>
-          <p className="text-sm text-white/50 leading-relaxed">{plan.notes}</p>
+        <div className="mt-4 rounded-xl border border-border bg-accent p-4">
+          <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2">Notes</p>
+          <p className="text-sm text-muted-foreground leading-relaxed">{plan.notes}</p>
         </div>
       )}
     </div>

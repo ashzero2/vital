@@ -12,7 +12,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   const userEmail = session.user.email ?? "";
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-background">
       {/* Desktop sidebar */}
       <Sidebar userName={userName} userEmail={userEmail} />
 

@@ -63,7 +63,7 @@ export function ScanUpload({ onParsed }: ScanUploadProps) {
         className={`w-full rounded-xl border-2 border-dashed p-10 text-center transition-all ${
           dragging
             ? "border-lime-400/60 bg-lime-400/5"
-            : "border-white/10 bg-white/3 hover:border-white/20 hover:bg-white/5"
+            : "border-border bg-accent hover:border-border hover:bg-muted"
         }`}
       >
         <input
@@ -77,22 +77,22 @@ export function ScanUpload({ onParsed }: ScanUploadProps) {
         {loading ? (
           <div className="flex flex-col items-center gap-3">
             <Loader2 size={32} className="animate-spin text-lime-400" />
-            <p className="text-sm text-white/50">Parsing {fileName}…</p>
+            <p className="text-sm text-muted-foreground">Parsing {fileName}…</p>
           </div>
         ) : fileName && !error ? (
           <div className="flex flex-col items-center gap-3">
             <FileText size={32} className="text-lime-400" />
             <p className="text-sm font-medium text-lime-400">{fileName}</p>
-            <p className="text-xs text-white/40">Click to upload a different file</p>
+            <p className="text-xs text-muted-foreground">Click to upload a different file</p>
           </div>
         ) : (
           <div className="flex flex-col items-center gap-3">
-            <Upload size={32} className="text-white/20" />
+            <Upload size={32} className="text-muted-foreground/50" />
             <div>
-              <p className="text-sm font-medium text-white/70">
+              <p className="text-sm font-medium text-foreground/80">
                 Drop your InBody export here
               </p>
-              <p className="mt-1 text-xs text-white/30">CSV, XLSX or XLS · max 5 MB</p>
+              <p className="mt-1 text-xs text-muted-foreground">CSV, XLSX or XLS · max 5 MB</p>
             </div>
           </div>
         )}
@@ -106,7 +106,7 @@ export function ScanUpload({ onParsed }: ScanUploadProps) {
         </div>
       )}
 
-      <p className="text-center text-xs text-white/25">
+      <p className="text-center text-xs text-muted-foreground/50">
         Fields will be pre-filled in the form below. You can edit anything before saving.
       </p>
     </div>

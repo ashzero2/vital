@@ -43,7 +43,7 @@ function Delta({
       : value > 0;
   const color =
     isGood === null
-      ? "text-white/40"
+      ? "text-muted-foreground/50"
       : isGood
       ? "text-emerald-400"
       : "text-red-400";
@@ -102,11 +102,11 @@ export default async function DashboardPage() {
     <div className="mx-auto max-w-3xl px-4 py-8">
       {/* Greeting */}
       <div className="mb-8">
-        <p className="text-xs uppercase tracking-widest text-white/30 mb-1">
+        <p className="text-xs uppercase tracking-widest text-muted-foreground/50 mb-1">
           {fmtDate(new Date())}
         </p>
         <h1
-          className="text-2xl font-bold text-white tracking-tight"
+          className="text-2xl font-bold text-foreground tracking-tight"
           style={{ fontFamily: "var(--font-syne), sans-serif" }}
         >
           {greeting()}, {firstName}
@@ -116,7 +116,7 @@ export default async function DashboardPage() {
       {/* Latest scan card */}
       {latestScan ? (
         <section className="mb-5">
-          <div className="rounded-xl border border-white/8 bg-white/3 p-5 relative overflow-hidden">
+          <div className="rounded-xl border border-border bg-accent p-5 relative overflow-hidden">
             {/* Subtle glow */}
             <div
               className="absolute -top-10 -right-10 w-40 h-40 rounded-full pointer-events-none"
@@ -125,8 +125,8 @@ export default async function DashboardPage() {
 
             <div className="flex items-start justify-between mb-5">
               <div>
-                <p className="text-[10px] uppercase tracking-widest text-white/30 mb-1">Latest Scan</p>
-                <p className="text-sm text-white/50">{fmtDate(latestScan.scanDate)}</p>
+                <p className="text-[10px] uppercase tracking-widest text-muted-foreground/50 mb-1">Latest Scan</p>
+                <p className="text-sm text-muted-foreground">{fmtDate(latestScan.scanDate)}</p>
               </div>
               <Link
                 href={`/scans/${latestScan.id}`}
@@ -138,11 +138,11 @@ export default async function DashboardPage() {
 
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
               {/* Weight */}
-              <div className="rounded-lg border border-white/6 bg-white/3 p-3">
-                <p className="text-[9px] uppercase tracking-widest text-white/30 mb-1">Weight</p>
-                <p className="text-lg font-bold text-white leading-none">
+              <div className="rounded-lg border border-border bg-accent p-3">
+                <p className="text-[9px] uppercase tracking-widest text-muted-foreground/50 mb-1">Weight</p>
+                <p className="text-lg font-bold text-foreground leading-none">
                   {fmt(latestScan.weightKg)}
-                  <span className="text-xs font-normal text-white/30 ml-0.5">kg</span>
+                  <span className="text-xs font-normal text-muted-foreground/50 ml-0.5">kg</span>
                 </p>
                 {previousScan && (
                   <div className="mt-1">
@@ -156,11 +156,11 @@ export default async function DashboardPage() {
               </div>
 
               {/* Body fat */}
-              <div className="rounded-lg border border-white/6 bg-white/3 p-3">
-                <p className="text-[9px] uppercase tracking-widest text-white/30 mb-1">Body Fat</p>
-                <p className="text-lg font-bold text-white leading-none">
+              <div className="rounded-lg border border-border bg-accent p-3">
+                <p className="text-[9px] uppercase tracking-widest text-muted-foreground/50 mb-1">Body Fat</p>
+                <p className="text-lg font-bold text-foreground leading-none">
                   {fmt(latestScan.bodyFatPercent)}
-                  <span className="text-xs font-normal text-white/30 ml-0.5">%</span>
+                  <span className="text-xs font-normal text-muted-foreground/50 ml-0.5">%</span>
                 </p>
                 {previousScan && (
                   <div className="mt-1">
@@ -174,11 +174,11 @@ export default async function DashboardPage() {
               </div>
 
               {/* Skeletal muscle */}
-              <div className="rounded-lg border border-white/6 bg-white/3 p-3">
-                <p className="text-[9px] uppercase tracking-widest text-white/30 mb-1">Muscle</p>
-                <p className="text-lg font-bold text-white leading-none">
+              <div className="rounded-lg border border-border bg-accent p-3">
+                <p className="text-[9px] uppercase tracking-widest text-muted-foreground/50 mb-1">Muscle</p>
+                <p className="text-lg font-bold text-foreground leading-none">
                   {fmt(latestScan.skeletalMuscleMassKg)}
-                  <span className="text-xs font-normal text-white/30 ml-0.5">kg</span>
+                  <span className="text-xs font-normal text-muted-foreground/50 ml-0.5">kg</span>
                 </p>
                 {previousScan && (
                   <div className="mt-1">
@@ -192,9 +192,9 @@ export default async function DashboardPage() {
               </div>
 
               {/* BMI */}
-              <div className="rounded-lg border border-white/6 bg-white/3 p-3">
-                <p className="text-[9px] uppercase tracking-widest text-white/30 mb-1">BMI</p>
-                <p className="text-lg font-bold text-white leading-none">
+              <div className="rounded-lg border border-border bg-accent p-3">
+                <p className="text-[9px] uppercase tracking-widest text-muted-foreground/50 mb-1">BMI</p>
+                <p className="text-lg font-bold text-foreground leading-none">
                   {fmt(latestScan.bmi)}
                 </p>
                 {previousScan && (
@@ -211,12 +211,12 @@ export default async function DashboardPage() {
         </section>
       ) : (
         <section className="mb-5">
-          <div className="rounded-xl border border-dashed border-white/10 bg-white/2 p-10 flex flex-col items-center text-center">
-            <div className="w-12 h-12 rounded-xl bg-white/4 border border-white/8 flex items-center justify-center mb-4">
-              <ScanLine size={22} className="text-white/20" />
+          <div className="rounded-xl border border-dashed border-border bg-accent p-10 flex flex-col items-center text-center">
+            <div className="w-12 h-12 rounded-xl bg-accent border border-border flex items-center justify-center mb-4">
+              <ScanLine size={22} className="text-muted-foreground/50" />
             </div>
-            <p className="text-sm font-medium text-white/50 mb-1">No scans yet</p>
-            <p className="text-xs text-white/25 mb-5">Add your first InBody scan to start tracking your body composition.</p>
+            <p className="text-sm font-medium text-muted-foreground mb-1">No scans yet</p>
+            <p className="text-xs text-muted-foreground mb-5">Add your first InBody scan to start tracking your body composition.</p>
             <Link
               href="/scans/new"
               className="flex items-center gap-2 rounded-lg bg-lime-400 px-4 py-2 text-sm font-bold text-black hover:opacity-90 transition-opacity"
@@ -231,77 +231,77 @@ export default async function DashboardPage() {
       {/* Stats strip */}
       {totalScans > 0 && (
         <div className="mb-5 grid grid-cols-3 gap-2">
-          <div className="rounded-xl border border-white/6 bg-white/2 px-4 py-3 text-center">
-            <p className="text-xl font-bold text-white" style={{ fontFamily: "var(--font-syne), sans-serif" }}>
+          <div className="rounded-xl border border-border bg-accent px-4 py-3 text-center">
+            <p className="text-xl font-bold text-foreground" style={{ fontFamily: "var(--font-syne), sans-serif" }}>
               {totalScans}
             </p>
-            <p className="text-[10px] uppercase tracking-widest text-white/30 mt-0.5">
+            <p className="text-[10px] uppercase tracking-widest text-muted-foreground/50 mt-0.5">
               {totalScans === 1 ? "Scan" : "Scans"}
             </p>
           </div>
-          <div className="rounded-xl border border-white/6 bg-white/2 px-4 py-3 text-center">
-            <p className="text-xl font-bold text-white" style={{ fontFamily: "var(--font-syne), sans-serif" }}>
+          <div className="rounded-xl border border-border bg-accent px-4 py-3 text-center">
+            <p className="text-xl font-bold text-foreground" style={{ fontFamily: "var(--font-syne), sans-serif" }}>
               {daysSinceScan === 0 ? "Today" : daysSinceScan === 1 ? "1d" : `${daysSinceScan}d`}
             </p>
-            <p className="text-[10px] uppercase tracking-widest text-white/30 mt-0.5">Last Scan</p>
+            <p className="text-[10px] uppercase tracking-widest text-muted-foreground/50 mt-0.5">Last Scan</p>
           </div>
-          <div className="rounded-xl border border-white/6 bg-white/2 px-4 py-3 text-center">
-            <p className="text-xl font-bold text-white" style={{ fontFamily: "var(--font-syne), sans-serif" }}>
+          <div className="rounded-xl border border-border bg-accent px-4 py-3 text-center">
+            <p className="text-xl font-bold text-foreground" style={{ fontFamily: "var(--font-syne), sans-serif" }}>
               {bestBfScan ? fmt(bestBfScan.bodyFatPercent) : "—"}
-              <span className="text-xs font-normal text-white/30">%</span>
+              <span className="text-xs font-normal text-muted-foreground/50">%</span>
             </p>
-            <p className="text-[10px] uppercase tracking-widest text-white/30 mt-0.5">Best BF%</p>
+            <p className="text-[10px] uppercase tracking-widest text-muted-foreground/50 mt-0.5">Best BF%</p>
           </div>
         </div>
       )}
 
       {/* Quick actions */}
       <section>
-        <h2 className="text-[10px] uppercase tracking-widest text-white/30 mb-3">Quick Actions</h2>
+        <h2 className="text-[10px] uppercase tracking-widest text-muted-foreground/50 mb-3">Quick Actions</h2>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
           <Link
             href="/scans/new"
-            className="group flex items-start gap-4 rounded-xl border border-white/8 bg-white/3 p-4 hover:border-white/14 hover:bg-white/4 transition-all"
+            className="group flex items-start gap-4 rounded-xl border border-border bg-accent p-4 hover:border-border hover:bg-accent transition-all"
           >
             <div className="w-9 h-9 rounded-lg border border-lime-400/20 bg-lime-400/8 flex items-center justify-center flex-shrink-0">
               <Plus size={17} className="text-lime-400" />
             </div>
             <div>
-              <p className="text-sm font-medium text-white group-hover:text-lime-400 transition-colors">New Scan</p>
-              <p className="text-xs text-white/35 mt-0.5 leading-relaxed">Log InBody measurements</p>
+              <p className="text-sm font-medium text-foreground group-hover:text-lime-400 transition-colors">New Scan</p>
+              <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">Log InBody measurements</p>
             </div>
           </Link>
 
           <Link
             href="/meal-plan"
-            className="group flex items-start gap-4 rounded-xl border border-white/8 bg-white/3 p-4 hover:border-white/14 hover:bg-white/4 transition-all"
+            className="group flex items-start gap-4 rounded-xl border border-border bg-accent p-4 hover:border-border hover:bg-accent transition-all"
           >
-            <div className="w-9 h-9 rounded-lg border border-white/10 bg-white/4 flex items-center justify-center flex-shrink-0">
-              <Utensils size={16} className="text-white/50 group-hover:text-white/80 transition-colors" />
+            <div className="w-9 h-9 rounded-lg border border-border bg-accent flex items-center justify-center flex-shrink-0">
+              <Utensils size={16} className="text-muted-foreground hover:text-foreground/80 transition-colors" />
             </div>
             <div>
-              <p className="text-sm font-medium text-white">Meal Plan</p>
+              <p className="text-sm font-medium text-foreground">Meal Plan</p>
               {latestMealPlan ? (
-                <p className="text-xs text-white/35 mt-0.5 leading-relaxed capitalize">{latestMealPlan.goal} · view latest</p>
+                <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed capitalize">{latestMealPlan.goal} · view latest</p>
               ) : (
-                <p className="text-xs text-white/35 mt-0.5 leading-relaxed">AI-generated 7-day plan</p>
+                <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">AI-generated 7-day plan</p>
               )}
             </div>
           </Link>
 
           <Link
             href="/workout"
-            className="group flex items-start gap-4 rounded-xl border border-white/8 bg-white/3 p-4 hover:border-white/14 hover:bg-white/4 transition-all"
+            className="group flex items-start gap-4 rounded-xl border border-border bg-accent p-4 hover:border-border hover:bg-accent transition-all"
           >
-            <div className="w-9 h-9 rounded-lg border border-white/10 bg-white/4 flex items-center justify-center flex-shrink-0">
-              <Dumbbell size={16} className="text-white/50 group-hover:text-white/80 transition-colors" />
+            <div className="w-9 h-9 rounded-lg border border-border bg-accent flex items-center justify-center flex-shrink-0">
+              <Dumbbell size={16} className="text-muted-foreground hover:text-foreground/80 transition-colors" />
             </div>
             <div>
-              <p className="text-sm font-medium text-white">Workout</p>
+              <p className="text-sm font-medium text-foreground">Workout</p>
               {latestWorkoutPlan ? (
-                <p className="text-xs text-white/35 mt-0.5 leading-relaxed">{latestWorkoutPlan.splitType} · view plan</p>
+                <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{latestWorkoutPlan.splitType} · view plan</p>
               ) : (
-                <p className="text-xs text-white/35 mt-0.5 leading-relaxed">Personalised training plan</p>
+                <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">Personalised training plan</p>
               )}
             </div>
           </Link>

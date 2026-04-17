@@ -30,14 +30,14 @@ export function ScanTimeline({ scans }: { scans: ScanEntry[] }) {
   return (
     <div className="relative">
       {/* Vertical line */}
-      <div className="absolute left-[7px] top-2 bottom-2 w-px bg-white/6" />
+      <div className="absolute left-[7px] top-2 bottom-2 w-px bg-border" />
 
       <div className="space-y-2">
         {sorted.map((scan, i) => (
           <Link
             key={scan.id}
             href={`/scans/${scan.id}`}
-            className="group flex items-start gap-4 rounded-xl border border-white/6 bg-white/2 p-4 hover:border-white/12 hover:bg-white/3 transition-all"
+            className="group flex items-start gap-4 rounded-xl border border-border bg-accent p-4 hover:border-border hover:bg-accent transition-all"
           >
             {/* Timeline dot */}
             <div className="relative flex-shrink-0 mt-0.5">
@@ -45,7 +45,7 @@ export function ScanTimeline({ scans }: { scans: ScanEntry[] }) {
                 className={`w-3.5 h-3.5 rounded-full border-2 ${
                   i === 0
                     ? "border-lime-400 bg-lime-400/20"
-                    : "border-white/20 bg-white/4"
+                    : "border-border bg-accent"
                 }`}
               />
             </div>
@@ -54,7 +54,7 @@ export function ScanTimeline({ scans }: { scans: ScanEntry[] }) {
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between gap-2">
                 <p
-                  className={`text-xs font-medium ${i === 0 ? "text-lime-400" : "text-white/40"}`}
+                  className={`text-xs font-medium ${i === 0 ? "text-lime-400" : "text-muted-foreground"}`}
                 >
                   {fmtDate(scan.scanDate)}
                   {i === 0 && (
@@ -65,27 +65,27 @@ export function ScanTimeline({ scans }: { scans: ScanEntry[] }) {
                 </p>
                 <ArrowRight
                   size={12}
-                  className="flex-shrink-0 text-white/20 group-hover:text-white/50 transition-colors"
+                  className="flex-shrink-0 text-muted-foreground/50 group-hover:text-foreground/80 transition-colors"
                 />
               </div>
 
               <div className="flex flex-wrap gap-x-4 gap-y-0.5 mt-1.5">
-                <span className="text-sm text-white">
+                <span className="text-sm text-foreground">
                   {scan.weightKg.toFixed(1)}
-                  <span className="text-white/30 text-xs ml-0.5">kg</span>
+                  <span className="text-muted-foreground text-xs ml-0.5">kg</span>
                 </span>
-                <span className="text-sm text-white/60">
+                <span className="text-sm text-muted-foreground">
                   {scan.bodyFatPercent.toFixed(1)}
-                  <span className="text-white/30 text-xs ml-0.5">% BF</span>
+                  <span className="text-muted-foreground text-xs ml-0.5">% BF</span>
                 </span>
-                <span className="text-sm text-white/60">
+                <span className="text-sm text-muted-foreground">
                   {scan.skeletalMuscleMassKg.toFixed(1)}
-                  <span className="text-white/30 text-xs ml-0.5">kg SMM</span>
+                  <span className="text-muted-foreground text-xs ml-0.5">kg SMM</span>
                 </span>
               </div>
 
               {scan.notes && (
-                <p className="mt-1.5 text-xs text-white/25 truncate">{scan.notes}</p>
+                <p className="mt-1.5 text-xs text-muted-foreground/50 truncate">{scan.notes}</p>
               )}
             </div>
           </Link>

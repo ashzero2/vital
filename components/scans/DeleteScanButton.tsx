@@ -26,10 +26,10 @@ export function DeleteScanButton({ scanId }: { scanId: string }) {
   if (confirming) {
     return (
       <div className="flex items-center gap-2">
-        <span className="text-sm text-white/50">Delete this scan?</span>
+        <span className="text-sm text-muted-foreground">Delete this scan?</span>
         <button
           onClick={() => setConfirming(false)}
-          className="rounded-lg border border-white/10 px-3 py-1.5 text-sm text-white/50 hover:text-white"
+          className="rounded-lg border border-border px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground"
         >
           Cancel
         </button>
@@ -48,7 +48,7 @@ export function DeleteScanButton({ scanId }: { scanId: string }) {
   return (
     <button
       onClick={() => setConfirming(true)}
-      className="flex items-center gap-1.5 rounded-lg border border-white/8 px-3 py-1.5 text-sm text-white/40 transition-colors hover:border-red-400/30 hover:text-red-400"
+      className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:border-red-400/30 hover:text-red-400"
     >
       <Trash2 size={14} />
       Delete

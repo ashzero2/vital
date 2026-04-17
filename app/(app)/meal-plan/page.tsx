@@ -52,13 +52,13 @@ export default async function MealPlanPage() {
       <div className="mb-6 flex items-start justify-between">
         <div>
           <h1
-            className="text-2xl font-bold text-white tracking-tight"
+            className="text-2xl font-bold text-foreground tracking-tight"
             style={{ fontFamily: "var(--font-syne), sans-serif" }}
           >
             Meal Plan
           </h1>
           {latestPlanRecord && (
-            <p className="text-xs text-white/30 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               Generated {fmtDate(latestPlanRecord.createdAt)} ·{" "}
               <span className="capitalize">{latestPlanRecord.goal}</span> ·{" "}
               {latestPlanRecord.caloricTarget} kcal
@@ -72,20 +72,20 @@ export default async function MealPlanPage() {
       {/* No plan — show form */}
       {!plan && (
         <>
-          <div className="mb-6 flex flex-col items-center justify-center rounded-xl border border-dashed border-white/10 bg-white/2 py-10 text-center">
-            <div className="w-12 h-12 rounded-xl border border-white/8 bg-white/4 flex items-center justify-center mb-4">
-              <Utensils size={22} className="text-white/20" />
+          <div className="mb-6 flex flex-col items-center justify-center rounded-xl border border-dashed border-border bg-accent py-10 text-center">
+            <div className="w-12 h-12 rounded-xl border border-border bg-accent flex items-center justify-center mb-4">
+              <Utensils size={22} className="text-muted-foreground/50" />
             </div>
-            <p className="text-sm font-medium text-white/50 mb-1">No meal plan yet</p>
-            <p className="text-xs text-white/25">
+            <p className="text-sm font-medium text-muted-foreground mb-1">No meal plan yet</p>
+            <p className="text-xs text-muted-foreground">
               Generate a personalised 7-day plan below.
             </p>
           </div>
 
-          <div className="rounded-xl border border-white/8 bg-white/3 p-5">
+          <div className="rounded-xl border border-border bg-accent p-5">
             <div className="flex items-center gap-2 mb-5">
               <Sparkles size={15} className="text-lime-400" />
-              <h2 className="text-sm font-semibold text-white">Generate Plan</h2>
+              <h2 className="text-sm font-semibold text-foreground">Generate Plan</h2>
             </div>
             <GenerateForm latestScanId={latestScanId} latestScanMetrics={latestScanMetrics} />
           </div>

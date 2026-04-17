@@ -56,26 +56,26 @@ export default async function ProgressPage() {
       {/* Header */}
       <div className="mb-6">
         <h1
-          className="text-2xl font-bold text-white tracking-tight"
+          className="text-2xl font-bold text-foreground tracking-tight"
           style={{ fontFamily: "var(--font-syne), sans-serif" }}
         >
           Progress
         </h1>
-        <p className="text-xs text-white/30 mt-1">
+        <p className="text-xs text-muted-foreground mt-1">
           {scans.length} {scans.length === 1 ? "scan" : "scans"} recorded
         </p>
       </div>
 
       {/* Empty state — fewer than 2 scans */}
       {!hasEnough && (
-        <div className="mb-8 flex flex-col items-center justify-center rounded-xl border border-dashed border-white/10 bg-white/2 py-14 text-center">
-          <div className="w-12 h-12 rounded-xl border border-white/8 bg-white/4 flex items-center justify-center mb-4">
-            <TrendingUp size={22} className="text-white/20" />
+        <div className="mb-8 flex flex-col items-center justify-center rounded-xl border border-dashed border-border bg-accent py-14 text-center">
+          <div className="w-12 h-12 rounded-xl border border-border bg-accent flex items-center justify-center mb-4">
+            <TrendingUp size={22} className="text-muted-foreground/50" />
           </div>
-          <p className="text-sm font-medium text-white/50 mb-1">
+          <p className="text-sm font-medium text-muted-foreground mb-1">
             {scans.length === 0 ? "No scans yet" : "Need one more scan"}
           </p>
-          <p className="text-xs text-white/25 mb-5 max-w-xs">
+          <p className="text-xs text-muted-foreground mb-5 max-w-xs">
             {scans.length === 0
               ? "Add at least 2 scans to start tracking your progress over time."
               : "Add a second scan to unlock trend charts and see how your body is changing."}
@@ -93,7 +93,7 @@ export default async function ProgressPage() {
       {/* Trend charts */}
       {hasEnough && (
         <section className="mb-8">
-          <h2 className="text-[10px] uppercase tracking-widest text-white/30 mb-4">Trends</h2>
+          <h2 className="text-[10px] uppercase tracking-widest text-muted-foreground mb-4">Trends</h2>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <TrendChartDynamic
               data={weightPoints}
@@ -138,7 +138,7 @@ export default async function ProgressPage() {
       {/* Scan timeline — always shown if any scans */}
       {scans.length > 0 && (
         <section>
-          <h2 className="text-[10px] uppercase tracking-widest text-white/30 mb-4">
+          <h2 className="text-[10px] uppercase tracking-widest text-muted-foreground mb-4">
             Scan History
           </h2>
           <ScanTimeline

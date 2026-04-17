@@ -36,8 +36,8 @@ export default async function ScansPage({
       {/* Header */}
       <div className="mb-8 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">Scans</h1>
-          <p className="text-sm text-white/40">
+          <h1 className="text-2xl font-bold text-foreground">Scans</h1>
+          <p className="text-sm text-muted-foreground">
             {total} {total === 1 ? "scan" : "scans"} recorded
           </p>
         </div>
@@ -52,10 +52,10 @@ export default async function ScansPage({
 
       {/* Empty state */}
       {scans.length === 0 && (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-white/6 bg-white/3 py-20 text-center">
-          <ScanLine size={40} className="mb-4 text-white/15" />
-          <p className="text-sm font-medium text-white/50">No scans yet</p>
-          <p className="mt-1 text-xs text-white/25">Add your first InBody scan to get started.</p>
+        <div className="flex flex-col items-center justify-center rounded-xl border border-border bg-accent py-20 text-center">
+          <ScanLine size={40} className="mb-4 text-muted-foreground/50" />
+          <p className="text-sm font-medium text-muted-foreground">No scans yet</p>
+          <p className="mt-1 text-xs text-muted-foreground">Add your first InBody scan to get started.</p>
           <Link
             href="/scans/new"
             className="mt-6 flex items-center gap-2 rounded-lg bg-lime-400 px-4 py-2 text-sm font-bold text-black"
@@ -90,18 +90,18 @@ export default async function ScansPage({
           {page > 1 && (
             <Link
               href={`/scans?page=${page - 1}`}
-              className="rounded-lg border border-white/10 px-4 py-2 text-sm text-white/60 hover:border-white/20 hover:text-white"
+              className="rounded-lg border border-border px-4 py-2 text-sm text-muted-foreground hover:border-border hover:text-foreground"
             >
               Previous
             </Link>
           )}
-          <span className="text-sm text-white/30">
+          <span className="text-sm text-muted-foreground">
             Page {page} of {pages}
           </span>
           {page < pages && (
             <Link
               href={`/scans?page=${page + 1}`}
-              className="rounded-lg border border-white/10 px-4 py-2 text-sm text-white/60 hover:border-white/20 hover:text-white"
+              className="rounded-lg border border-border px-4 py-2 text-sm text-muted-foreground hover:border-border hover:text-foreground"
             >
               Next
             </Link>

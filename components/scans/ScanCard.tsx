@@ -31,12 +31,12 @@ export function ScanCard({ id, scanDate, weightKg, bodyFatPercent, skeletalMuscl
   return (
     <Link
       href={`/scans/${id}`}
-      className="group flex items-center justify-between rounded-xl border border-white/8 bg-white/3 px-5 py-4 transition-all hover:border-white/15 hover:bg-white/6"
+      className="group flex items-center justify-between rounded-xl border border-border bg-accent px-5 py-4 transition-all hover:border-border hover:bg-muted"
     >
       <div className="flex items-center gap-6">
         {/* Date */}
         <div className="w-28 shrink-0">
-          <p className="text-sm font-medium text-white">{fmtDate(scanDate)}</p>
+          <p className="text-sm font-medium text-foreground">{fmtDate(scanDate)}</p>
         </div>
 
         {/* Metrics row */}
@@ -62,7 +62,7 @@ export function ScanCard({ id, scanDate, weightKg, bodyFatPercent, skeletalMuscl
         </div>
       </div>
 
-      <ArrowRight size={16} className="text-white/20 transition-all group-hover:translate-x-1 group-hover:text-white/50" />
+      <ArrowRight size={16} className="text-muted-foreground/50 transition-all group-hover:translate-x-1 group-hover:text-foreground/80" />
     </Link>
   );
 }
@@ -70,7 +70,7 @@ export function ScanCard({ id, scanDate, weightKg, bodyFatPercent, skeletalMuscl
 function Metric({
   label,
   value,
-  valueClass = "text-white",
+  valueClass = "text-foreground",
   sub,
   className = "",
 }: {
@@ -82,9 +82,9 @@ function Metric({
 }) {
   return (
     <div className={className}>
-      <p className="text-[11px] uppercase tracking-widest text-white/30">{label}</p>
+      <p className="text-[11px] uppercase tracking-widest text-muted-foreground">{label}</p>
       <p className={`text-sm font-semibold ${valueClass}`}>{value}</p>
-      {sub && <p className="text-[10px] text-white/30">{sub}</p>}
+      {sub && <p className="text-[10px] text-muted-foreground">{sub}</p>}
     </div>
   );
 }

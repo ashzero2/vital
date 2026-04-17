@@ -49,7 +49,7 @@ export default async function ScanDetailPage({ params }: Params) {
       {/* Back */}
       <Link
         href="/scans"
-        className="mb-6 inline-flex items-center gap-1 text-sm text-white/40 hover:text-white/70"
+        className="mb-6 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground/80"
       >
         <ChevronLeft size={14} />
         All Scans
@@ -58,8 +58,8 @@ export default async function ScanDetailPage({ params }: Params) {
       {/* Header */}
       <div className="mb-8 flex items-start justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">Scan Details</h1>
-          <p className="mt-1 text-sm text-white/40">{fmtDate(scan.scanDate)}</p>
+          <h1 className="text-2xl font-bold text-foreground">Scan Details</h1>
+          <p className="mt-1 text-sm text-muted-foreground">{fmtDate(scan.scanDate)}</p>
         </div>
         <DeleteScanButton scanId={scan.id} />
       </div>
@@ -118,7 +118,7 @@ export default async function ScanDetailPage({ params }: Params) {
       {/* Segmental breakdown */}
       {(scan.rightArmLeanKg || scan.trunkLeanKg || scan.rightLegLeanKg) && (
         <section className="mb-6">
-          <h2 className="mb-3 text-xs uppercase tracking-widest text-white/30">Segmental Lean Mass</h2>
+          <h2 className="mb-3 text-xs uppercase tracking-widest text-muted-foreground">Segmental Lean Mass</h2>
           <div className="grid grid-cols-3 gap-2 sm:grid-cols-5">
             {[
               { label: "R. Arm", value: scan.rightArmLeanKg },
@@ -127,9 +127,9 @@ export default async function ScanDetailPage({ params }: Params) {
               { label: "R. Leg", value: scan.rightLegLeanKg },
               { label: "L. Leg", value: scan.leftLegLeanKg },
             ].map(({ label, value }) => (
-              <div key={label} className="rounded-lg border border-white/6 bg-white/3 p-3 text-center">
-                <p className="text-[10px] text-white/30">{label}</p>
-                <p className="text-sm font-semibold text-white">{fmt(value)} <span className="text-[10px] text-white/30">kg</span></p>
+              <div key={label} className="rounded-lg border border-border bg-accent p-3 text-center">
+                <p className="text-[10px] text-muted-foreground">{label}</p>
+                <p className="text-sm font-semibold text-foreground">{fmt(value)} <span className="text-[10px] text-muted-foreground">kg</span></p>
               </div>
             ))}
           </div>
@@ -138,7 +138,7 @@ export default async function ScanDetailPage({ params }: Params) {
 
       {(scan.rightArmFatKg || scan.trunkFatKg || scan.rightLegFatKg) && (
         <section className="mb-6">
-          <h2 className="mb-3 text-xs uppercase tracking-widest text-white/30">Segmental Fat Mass</h2>
+          <h2 className="mb-3 text-xs uppercase tracking-widest text-muted-foreground">Segmental Fat Mass</h2>
           <div className="grid grid-cols-3 gap-2 sm:grid-cols-5">
             {[
               { label: "R. Arm", value: scan.rightArmFatKg },
@@ -147,9 +147,9 @@ export default async function ScanDetailPage({ params }: Params) {
               { label: "R. Leg", value: scan.rightLegFatKg },
               { label: "L. Leg", value: scan.leftLegFatKg },
             ].map(({ label, value }) => (
-              <div key={label} className="rounded-lg border border-white/6 bg-white/3 p-3 text-center">
-                <p className="text-[10px] text-white/30">{label}</p>
-                <p className="text-sm font-semibold text-white">{fmt(value)} <span className="text-[10px] text-white/30">kg</span></p>
+              <div key={label} className="rounded-lg border border-border bg-accent p-3 text-center">
+                <p className="text-[10px] text-muted-foreground">{label}</p>
+                <p className="text-sm font-semibold text-foreground">{fmt(value)} <span className="text-[10px] text-muted-foreground">kg</span></p>
               </div>
             ))}
           </div>
@@ -158,16 +158,16 @@ export default async function ScanDetailPage({ params }: Params) {
 
       {/* Notes */}
       {scan.notes && (
-        <section className="mb-6 rounded-xl border border-white/6 bg-white/3 p-5">
-          <h2 className="mb-2 text-xs uppercase tracking-widest text-white/30">Notes</h2>
-          <p className="text-sm text-white/70 whitespace-pre-wrap">{scan.notes}</p>
+        <section className="mb-6 rounded-xl border border-border bg-accent p-5">
+          <h2 className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">Notes</h2>
+          <p className="text-sm text-foreground/80 whitespace-pre-wrap">{scan.notes}</p>
         </section>
       )}
 
       {/* Comparison */}
       {previous && (
         <section>
-          <h2 className="mb-3 text-xs uppercase tracking-widest text-white/30">Changes Since Last Scan</h2>
+          <h2 className="mb-3 text-xs uppercase tracking-widest text-muted-foreground">Changes Since Last Scan</h2>
           <ScanCompare current={scan} previous={previous} previousDate={previous.scanDate} />
         </section>
       )}
@@ -185,11 +185,11 @@ function MetricCard({
   tagColor?: string;
 }) {
   return (
-    <div className="rounded-xl border border-white/8 bg-white/3 p-4">
-      <p className="text-[10px] uppercase tracking-widest text-white/30">{label}</p>
-      <p className="mt-1 text-xl font-bold text-white">
+    <div className="rounded-xl border border-border bg-accent p-4">
+      <p className="text-[10px] uppercase tracking-widest text-muted-foreground">{label}</p>
+      <p className="mt-1 text-xl font-bold text-foreground">
         {value}
-        {unit && <span className="ml-1 text-xs font-normal text-white/30">{unit}</span>}
+        {unit && <span className="ml-1 text-xs font-normal text-muted-foreground">{unit}</span>}
       </p>
       {tag && <p className={`text-xs font-medium ${tagColor}`}>{tag}</p>}
     </div>

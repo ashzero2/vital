@@ -26,24 +26,24 @@ export default function NewScanPage() {
       {/* Back link */}
       <Link
         href="/scans"
-        className="mb-6 inline-flex items-center gap-1 text-sm text-white/40 hover:text-white/70"
+        className="mb-6 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground/80"
       >
         <ChevronLeft size={14} />
         All Scans
       </Link>
 
-      <h1 className="mb-6 text-2xl font-bold text-white">New Scan</h1>
+      <h1 className="mb-6 text-2xl font-bold text-foreground">New Scan</h1>
 
       {/* Tabs */}
-      <div className="mb-8 flex gap-1 rounded-lg border border-white/8 bg-white/3 p-1 w-fit">
+      <div className="mb-8 flex gap-1 rounded-lg border border-border bg-accent p-1 w-fit">
         {(["manual", "upload"] as Tab[]).map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
             className={`rounded-md px-5 py-2 text-sm font-medium transition-all ${
               tab === t
-                ? "bg-white/10 text-white"
-                : "text-white/40 hover:text-white/60"
+                ? "bg-muted text-foreground"
+                : "text-muted-foreground hover:text-foreground/80"
             }`}
           >
             {t === "manual" ? "Manual Entry" : "Upload File"}

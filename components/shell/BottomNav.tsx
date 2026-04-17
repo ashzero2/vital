@@ -28,12 +28,8 @@ export function BottomNav() {
 
   return (
     <nav
-      className="md:hidden fixed bottom-0 left-0 right-0 border-t border-white/6 z-40"
-      style={{
-        background: "rgba(15,15,15,0.96)",
-        backdropFilter: "blur(12px)",
-        paddingBottom: "env(safe-area-inset-bottom)",
-      }}
+      className="md:hidden fixed bottom-0 left-0 right-0 border-t border-border bg-background/95 backdrop-blur-md z-40"
+      style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
       <div className="flex items-stretch">
         {NAV.map(({ label, href, icon: Icon }) => {
@@ -42,8 +38,9 @@ export function BottomNav() {
             <Link
               key={href}
               href={href}
-              className="flex-1 flex flex-col items-center justify-center gap-1 py-3 transition-colors"
-              style={{ color: active ? "#a3e635" : "rgba(255,255,255,0.3)" }}
+              className={`flex-1 flex flex-col items-center justify-center gap-1 py-3 transition-colors ${
+                active ? "text-lime-500" : "text-muted-foreground"
+              }`}
             >
               <Icon size={20} strokeWidth={active ? 2 : 1.5} />
               <span className="text-[10px] font-medium tracking-wide">{label}</span>
